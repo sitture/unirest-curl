@@ -6,7 +6,7 @@ import kong.unirest.Interceptor;
 
 public class CurlInterceptor implements Interceptor {
 
-    private final RequestLogger requestLogger;
+    private final transient RequestLogger requestLogger;
 
     public CurlInterceptor(final RequestLogger requestLogger) {
         this.requestLogger = requestLogger;
