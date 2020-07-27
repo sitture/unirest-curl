@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CurlTransformerTest {
+public class CurlBuilderTest {
 
     private static final String TEST_URL = "https://localhost/test";
     private static final String UNEXPECTED_ERROR = "Unexpected curl request generated.";
@@ -17,7 +17,7 @@ public class CurlTransformerTest {
     @Test
     public void canTransformGetRequestWithNoHeaders() {
         final HttpRequest<?> request = Unirest.get(TEST_URL);
-        final String generatedCurl = new CurlTransformer(request).transform();
+        final String generatedCurl = new CurlBuilder(request).build();
         final String expectedCurl = String.format("curl --verbose --url \"%s\"", TEST_URL);
         assertEquals(expectedCurl, generatedCurl, UNEXPECTED_ERROR);
     }
@@ -27,7 +27,7 @@ public class CurlTransformerTest {
         final HttpRequest<?> request = Unirest.get(TEST_URL)
                 .header("Content-Type", "application/json")
                 .basicAuth("username", "password");
-        final String generatedCurl = new CurlTransformer(request).transform();
+        final String generatedCurl = new CurlBuilder(request).build();
         final String expectedCurl = String.format("curl --verbose --url \"%s\" --header \"Content-Type:application/json\" --header \"Authorization:Basic dXNlcm5hbWU6cGFzc3dvcmQ=\"", TEST_URL);
         assertEquals(expectedCurl, generatedCurl, UNEXPECTED_ERROR);
     }
@@ -36,7 +36,7 @@ public class CurlTransformerTest {
     public void canTransformPostRequestWithHeaders() {
         final HttpRequest<?> request = Unirest.post(TEST_URL)
                 .header("Accept", "application/json");
-        final String generatedCurl = new CurlTransformer(request).transform();
+        final String generatedCurl = new CurlBuilder(request).build();
         final String expectedCurl = String.format("curl --verbose --request POST --url \"%s\" --header \"Accept:application/json\"", TEST_URL);
         assertEquals(expectedCurl, generatedCurl, UNEXPECTED_ERROR);
     }
@@ -46,7 +46,7 @@ public class CurlTransformerTest {
         final HttpRequest<?> request = Unirest.post(TEST_URL)
                 .header("content-type", "application/xml")
                 .body("{\"test\": \"body\"}");
-        final String generatedCurl = new CurlTransformer(request).transform();
+        final String generatedCurl = new CurlBuilder(request).build();
         final String expectedCurl = String.format("curl --verbose --request POST --url \"%s\" --header \"content-type:application/xml\" --data '{\"test\": \"body\"}'", TEST_URL);
         assertEquals(expectedCurl, generatedCurl, UNEXPECTED_ERROR);
     }
@@ -60,7 +60,7 @@ public class CurlTransformerTest {
                 .header("Accept", "application/json")
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .fields(bodyMap);
-        final String generatedCurl = new CurlTransformer(request).transform();
+        final String generatedCurl = new CurlBuilder(request).build();
         final String expectedCurl = String.format("curl --verbose --request POST --url \"%s\" --header \"Accept:application/json\" --header \"Content-Type:application/x-www-form-urlencoded\" --data 'key1=value&key2=2'", TEST_URL);
         assertEquals(expectedCurl, generatedCurl, UNEXPECTED_ERROR);
     }
@@ -71,7 +71,7 @@ public class CurlTransformerTest {
                 .header("Accept", "application/xml")
                 .field("key1", "value")
                 .field("key2", "value2");
-        final String generatedCurl = new CurlTransformer(request).transform();
+        final String generatedCurl = new CurlBuilder(request).build();
         final String expectedCurl = String.format("curl --verbose --request POST --url \"%s\" --header \"Accept:application/xml\" --data 'key1=value&key2=value2'", TEST_URL);
         assertEquals(expectedCurl, generatedCurl, UNEXPECTED_ERROR);
     }

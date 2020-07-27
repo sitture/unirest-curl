@@ -14,7 +14,7 @@ public class CurlInterceptor implements Interceptor {
 
     @Override
     public void onRequest(final HttpRequest<?> request, final Config config) {
-        final String generatedCurl = new CurlTransformer(request).transform();
+        final String generatedCurl = new CurlBuilder(request).build();
         requestLogger.log(generatedCurl);
     }
 }
