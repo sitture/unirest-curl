@@ -1,2 +1,2 @@
 #!/bin/sh
-mvn clean -q test -Dmaven.javadoc.skip=true -Dgpg.skip
+mvn clean -B test -Dmaven.javadoc.skip=true -Dgpg.skip
