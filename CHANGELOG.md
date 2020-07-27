@@ -9,3 +9,4 @@ and adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 ### Added
 
 - Initial release of the unirest to curl interceptor.
+- Adds support for extracting `methodtype`, `headers`, `simple body`, `params body`.
