@@ -1,6 +1,5 @@
 package com.github.sitture.unirestcurl;
 
-import kong.unirest.Header;
 import kong.unirest.HttpMethod;
 import kong.unirest.HttpRequest;
 import kong.unirest.ParamPart;
@@ -16,6 +15,8 @@ public class CurlTransformer {
     private static final String REQUEST_URL = "--url \"%s\"";
     private static final String REQUEST_HEADER = "--header \"%s:%s\"";
     private static final String REQUEST_BODY = "--data '%s'";
+    private static final String SPACE_DELIMITER = " ";
+    private static final String EMPTY_STRING = "";
     private final transient HttpRequest<?> request;
 
     public CurlTransformer(final HttpRequest<?> request) {
@@ -33,19 +34,13 @@ public class CurlTransformer {
     }
 
     private String getProcessedCurl(final List<String> curlItems) {
-        final StringBuilder curlString = new StringBuilder();
-        for (final String curlItem : curlItems) {
-            if (!curlItem.isEmpty() && curlItem.length() > 0) {
-                curlString.append(curlItem);
-                curlString.append(' ');
-            }
-        }
-        return curlString.toString().trim();
+        return curlItems.stream()
+                .filter(curlItem -> !curlItem.isEmpty())
+                .collect(Collectors.joining(SPACE_DELIMITER));
     }
 
-
     private String getHttpMethod() {
-        return request.getHttpMethod() == HttpMethod.GET ? "" : String.format(REQUEST_METHOD, request.getHttpMethod());
+        return request.getHttpMethod() == HttpMethod.GET ? EMPTY_STRING : String.format(REQUEST_METHOD, request.getHttpMethod());
     }
 
     private String getUrl() {
@@ -53,12 +48,9 @@ public class CurlTransformer {
     }
 
     private String getHeaders() {
-        final StringBuilder headersString = new StringBuilder();
-        for (final Header header : request.getHeaders().all()) {
-            headersString.append(String.format(REQUEST_HEADER, header.getName(), header.getValue()));
-            headersString.append(' ');
-        }
-        return headersString.toString().trim();
+        return request.getHeaders().all().stream()
+                .map(header -> String.format(REQUEST_HEADER, header.getName(), header.getValue()))
+                .collect(Collectors.joining(SPACE_DELIMITER));
     }
 
     private String getBody() {
@@ -68,12 +60,8 @@ public class CurlTransformer {
                 processedBody = String.format(REQUEST_BODY, request.getBody().get().uniPart().getValue());
             } else {
                 final String fields = request.getBody().get().multiParts().stream()
-                        .map(bodyPart -> {
-                            if (bodyPart instanceof ParamPart) {
-                                return String.format("%s=%s", bodyPart.getName(), bodyPart.getValue());
-                            }
-                            return "";
-                        })
+                        .filter(bodyPart -> bodyPart instanceof ParamPart)
+                        .map(bodyPart -> String.format("%s=%s", bodyPart.getName(), bodyPart.getValue()))
                         .collect(Collectors.joining("&"));
                 processedBody = String.format(REQUEST_BODY, fields);
             }
