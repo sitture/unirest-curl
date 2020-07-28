@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CurlBuilder {
+class CurlBuilder {
 
     private static final String CURL_PREFIX = "curl --verbose";
     private static final String REQUEST_METHOD = "--request %s";
@@ -19,7 +19,7 @@ public class CurlBuilder {
     private static final String EMPTY_STRING = "";
     private final transient HttpRequest<?> request;
 
-    public CurlBuilder(final HttpRequest<?> request) {
+    /* default */ CurlBuilder(final HttpRequest<?> request) {
         this.request = request;
     }
 
