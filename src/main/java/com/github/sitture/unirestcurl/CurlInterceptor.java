@@ -8,6 +8,10 @@ public class CurlInterceptor implements Interceptor {
 
     private final transient RequestLogger requestLogger;
 
+    /**
+     * Interceptor for capturing requests as curls.
+     * @param requestLogger to use for logging
+     */
     public CurlInterceptor(final RequestLogger requestLogger) {
         this.requestLogger = requestLogger;
     }

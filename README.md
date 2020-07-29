@@ -1,6 +1,6 @@
 # unirest-curl
 
-An interceptor to log Unirest requests as curl requests.
+An interceptor for logging Unirest requests as curl requests.
 
 ![Build](https://github.com/sitture/unirest-curl/workflows/Build/badge.svg) ![Github Publish](https://github.com/sitture/unirest-curl/workflows/Github%20Publish/badge.svg) ![Maven Publish](https://github.com/sitture/unirest-curl/workflows/Maven%20Publish/badge.svg) [![Maven Central](https://img.shields.io/maven-central/v/com.github.sitture/unirest-curl.svg)](https://mvnrepository.com/search?q=com.github.sitture) [![Maintainability](https://api.codeclimate.com/v1/badges/05417905d6cedb0b2e49/maintainability)](https://codeclimate.com/github/sitture/unirest-curl/maintainability) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?maxAge=2592000)](https://opensource.org/licenses/MIT) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](../../issues)
 
