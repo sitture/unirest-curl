@@ -1,0 +1,25 @@
+engines:
+  # ... CONFIG CONTENT ...
+  markdownlint:
+    enabled: true
+    # ... CONFIG CONTENT ...
+    checks:
+      MD024:
+        enabled: false
+      MD026:
+        enabled: false
+      # line length
+      MD013:
+        enabled: false
+      # Ordered list item prefix
+      MD029:
+        enabled: false
+  checkstyle:
+    enabled: true
+    # ... CONFIG CONTENT ...
+    checks:
+      com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck:
+        enabled: false
+      com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck:
+        enabled: false
+# ... CONFIG CONTENT ...

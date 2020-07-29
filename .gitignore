@@ -1,3 +1,26 @@
+# use glob syntax.
+syntax: glob
+*.ser
+*.class
+*~
+*.bak
+#*.off
+*.old
+
+# eclipse conf file
+.settings
+.classpath
+.project
+.manager
+.scala_dependencies
+
+# idea
+.idea
+.vscode
+*.iml
+
+
+# maven
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -9,3 +32,27 @@ buildNumber.properties
 .mvn/timing.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
+
+# building
+build
+logs
+null
+tmp*
+temp*
+dist
+test-output
+build.log
+
+# other scm
+.svn
+.CVS
+.hg*
+.checkstyle
+
+# switch to regexp syntax.
+#  syntax: regexp
+#  ^\.pc/
+
+# output not in target directory
+build.log
+
