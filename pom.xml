@@ -247,7 +247,7 @@
                 <repository>
                     <id>github</id>
                     <name>GitHub Packages</name>
-                    <url>https://maven.pkg.github.com/sitture/env-config</url>
+                    <url>https://maven.pkg.github.com/sitture/unirest-curl</url>
                 </repository>
             </distributionManagement>
         </profile>
