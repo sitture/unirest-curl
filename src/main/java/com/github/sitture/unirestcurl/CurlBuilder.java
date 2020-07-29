@@ -19,10 +19,18 @@ class CurlBuilder {
     private static final String EMPTY_STRING = "";
     private final transient HttpRequest<?> request;
 
+    /**
+     * Builds curl request based on the unirest request.
+     * @param request object to transform
+     */
     /* default */ CurlBuilder(final HttpRequest<?> request) {
         this.request = request;
     }
 
+    /**
+     * Builds curl request based.
+     * @return transforms curl request log
+     */
     public String build() {
         final List<String> curlItems = new ArrayList<>();
         curlItems.add(CURL_PREFIX);
