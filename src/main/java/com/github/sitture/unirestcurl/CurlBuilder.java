@@ -13,7 +13,7 @@ class CurlBuilder {
     private static final String CURL_PREFIX = "curl --verbose";
     private static final String REQUEST_METHOD = "--request %s";
     private static final String REQUEST_URL = "--url \"%s\"";
-    private static final String REQUEST_HEADER = "--header \"%s:%s\"";
+    private static final String REQUEST_HEADER = "--header \"%s: %s\"";
     private static final String REQUEST_BODY = "--data '%s'";
     private static final String SPACE_DELIMITER = " ";
     private static final String EMPTY_STRING = "";
@@ -67,11 +67,10 @@ class CurlBuilder {
             if (request.getBody().get().multiParts().size() == 0) {
                 processedBody = String.format(REQUEST_BODY, request.getBody().get().uniPart().getValue());
             } else {
-                final String fields = request.getBody().get().multiParts().stream()
+                processedBody = request.getBody().get().multiParts().stream()
                         .filter(bodyPart -> bodyPart instanceof ParamPart)
-                        .map(bodyPart -> String.format("%s=%s", bodyPart.getName(), bodyPart.getValue()))
-                        .collect(Collectors.joining("&"));
-                processedBody = String.format(REQUEST_BODY, fields);
+                        .map(bodyPart -> String.format("--data '%s=%s'", bodyPart.getName(), bodyPart.getValue()))
+                        .collect(Collectors.joining(SPACE_DELIMITER));
             }
         }
         return processedBody;
