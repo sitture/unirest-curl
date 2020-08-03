@@ -64,7 +64,7 @@ class CurlBuilder {
     private String getBody() {
         String processedBody = "";
         if (request.getBody().isPresent()) {
-            if (request.getBody().get().multiParts().size() == 0) {
+            if (request.getBody().get().multiParts().size() == 0 && null != request.getBody().get().uniPart()) {
                 processedBody = String.format(REQUEST_BODY, request.getBody().get().uniPart().getValue());
             } else {
                 processedBody = request.getBody().get().multiParts().stream()

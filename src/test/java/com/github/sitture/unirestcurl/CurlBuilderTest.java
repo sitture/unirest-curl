@@ -4,6 +4,7 @@ import kong.unirest.HttpRequest;
 import kong.unirest.Unirest;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -48,6 +49,25 @@ public class CurlBuilderTest {
                 .body("{\"test\": \"body\"}");
         final String generatedCurl = new CurlBuilder(request).build();
         final String expectedCurl = String.format("curl --verbose --request POST --url \"%s\" --header \"content-type: application/xml\" --data '{\"test\": \"body\"}'", TEST_URL);
+        assertEquals(expectedCurl, generatedCurl, UNEXPECTED_ERROR);
+    }
+
+    @Test
+    public void canTransformPostRequestWithHeadersAndNullBodyMap() {
+        final HttpRequest<?> request = Unirest.post(TEST_URL)
+                .header("content-type", "application/xml")
+                .fields(null);
+        final String generatedCurl = new CurlBuilder(request).build();
+        final String expectedCurl = String.format("curl --verbose --request POST --url \"%s\" --header \"content-type: application/xml\"", TEST_URL);
+        assertEquals(expectedCurl, generatedCurl, UNEXPECTED_ERROR);
+    }
+
+    @Test
+    public void canTransformPostRequestWithHeadersAndEmptyBodyMap() {
+        final HttpRequest<?> request = Unirest.post(TEST_URL)
+                .fields(Collections.emptyMap());
+        final String generatedCurl = new CurlBuilder(request).build();
+        final String expectedCurl = String.format("curl --verbose --request POST --url \"%s\"", TEST_URL);
         assertEquals(expectedCurl, generatedCurl, UNEXPECTED_ERROR);
     }
 

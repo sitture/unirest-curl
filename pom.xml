@@ -5,7 +5,7 @@
     <artifactId>unirest-curl</artifactId>
     <name>${project.artifactId}</name>
     <packaging>jar</packaging>
-    <version>0.1.0</version>
+    <version>0.1.2</version>
     <description>An interceptor to log Unirest requests as curl requests.</description>
     <url>https://github.com/sitture/unirest-curl</url>
     <developers>
