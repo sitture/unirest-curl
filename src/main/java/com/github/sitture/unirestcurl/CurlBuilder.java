@@ -48,7 +48,7 @@ class CurlBuilder {
     }
 
     private String getHttpMethod() {
-        return request.getHttpMethod() == HttpMethod.GET ? EMPTY_STRING : String.format(REQUEST_METHOD, request.getHttpMethod());
+        return HttpMethod.GET.equals(request.getHttpMethod()) ? EMPTY_STRING : String.format(REQUEST_METHOD, request.getHttpMethod());
     }
 
     private String getUrl() {
