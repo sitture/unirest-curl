@@ -10,13 +10,13 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CurlBuilderTest {
+class CurlBuilderTest {
 
     private static final String TEST_URL = "https://localhost/test";
     private static final String UNEXPECTED_ERROR = "Unexpected curl request generated.";
 
     @Test
-    public void canTransformGetRequestWithNoHeaders() {
+    /* default */ void canTransformGetRequestWithNoHeaders() {
         final HttpRequest<?> request = Unirest.get(TEST_URL);
         final String generatedCurl = new CurlBuilder(request).build();
         final String expectedCurl = String.format("curl --verbose --url \"%s\"", TEST_URL);
@@ -24,7 +24,7 @@ public class CurlBuilderTest {
     }
 
     @Test
-    public void canTransformGetRequestWithHeaders() {
+    /* default */ void canTransformGetRequestWithHeaders() {
         final HttpRequest<?> request = Unirest.get(TEST_URL)
                 .header("Content-Type", "application/json")
                 .basicAuth("username", "password");
@@ -34,7 +34,7 @@ public class CurlBuilderTest {
     }
 
     @Test
-    public void canTransformPostRequestWithHeaders() {
+    /* default */ void canTransformPostRequestWithHeaders() {
         final HttpRequest<?> request = Unirest.post(TEST_URL)
                 .header("Accept", "application/json");
         final String generatedCurl = new CurlBuilder(request).build();
@@ -43,7 +43,7 @@ public class CurlBuilderTest {
     }
 
     @Test
-    public void canTransformPostRequestWithHeadersAndStringBody() {
+    /* default */ void canTransformPostRequestWithHeadersAndStringBody() {
         final HttpRequest<?> request = Unirest.post(TEST_URL)
                 .header("content-type", "application/xml")
                 .body("{\"test\": \"body\"}");
@@ -53,7 +53,7 @@ public class CurlBuilderTest {
     }
 
     @Test
-    public void canTransformPostRequestWithHeadersAndNullBodyMap() {
+    /* default */ void canTransformPostRequestWithHeadersAndNullBodyMap() {
         final HttpRequest<?> request = Unirest.post(TEST_URL)
                 .header("content-type", "application/xml")
                 .fields(null);
@@ -63,7 +63,7 @@ public class CurlBuilderTest {
     }
 
     @Test
-    public void canTransformPostRequestWithHeadersAndEmptyBodyMap() {
+    /* default */ void canTransformPostRequestWithHeadersAndEmptyBodyMap() {
         final HttpRequest<?> request = Unirest.post(TEST_URL)
                 .fields(Collections.emptyMap());
         final String generatedCurl = new CurlBuilder(request).build();
@@ -72,7 +72,7 @@ public class CurlBuilderTest {
     }
 
     @Test
-    public void canTransformPostRequestWithHeadersAndFieldsBodyMap() {
+    /* default */ void canTransformPostRequestWithHeadersAndFieldsBodyMap() {
         final Map<String, Object> bodyMap = new ConcurrentHashMap<>();
         bodyMap.put("key1", "value");
         bodyMap.put("key2", 2);
@@ -86,7 +86,7 @@ public class CurlBuilderTest {
     }
 
     @Test
-    public void canTransformPostRequestWithHeadersAndSingleFields() {
+    /* default */ void canTransformPostRequestWithHeadersAndSingleFields() {
         final HttpRequest<?> request = Unirest.post(TEST_URL)
                 .header("Accept", "application/xml")
                 .field("key1", "value")
