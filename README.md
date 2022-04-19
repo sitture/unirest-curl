@@ -12,7 +12,7 @@ The latest version of the library can be found under [Releases](https://github.c
 
 ## Setup
 
-Add the following dependency to use this EnvConfig:
+Add the following both `unirest-java` and `unirest-curl` dependencies:
 
 ### Maven
 
