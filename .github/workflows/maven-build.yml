@@ -13,7 +13,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin' # See 'Supported distributions' for available options
-          java-version: '1.8'
+          java-version: '8'
           cache: 'maven'
       - name: Run Tests
         run: .github/workflows/run_tests.sh
