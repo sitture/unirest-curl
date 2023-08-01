@@ -5,7 +5,7 @@
     <artifactId>unirest-curl</artifactId>
     <name>${project.artifactId}</name>
     <packaging>jar</packaging>
-    <version>0.3.0</version>
+    <version>0.5.0</version>
     <description>An interceptor to log Unirest requests as curl requests.</description>
     <url>https://github.com/sitture/unirest-curl</url>
     <developers>
@@ -38,17 +38,16 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>11</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

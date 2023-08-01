@@ -9,6 +9,7 @@ and adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 ### Updated
 
 - Upgrades to use unirest 4.x
+- requires at least Java 11
 
 ## 0.2.0
 
