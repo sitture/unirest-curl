@@ -19,7 +19,7 @@ Add the following both `unirest-java` and `unirest-curl` dependencies:
 ```xml
 <dependency>
     <groupId>com.konghq</groupId>
-    <artifactId>unirest-java</artifactId>
+    <artifactId>unirest-java-core</artifactId>
     <version>${version}</version>
 </dependency>
 <dependency>

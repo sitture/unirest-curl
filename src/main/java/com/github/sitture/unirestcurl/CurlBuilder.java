@@ -1,8 +1,8 @@
 package com.github.sitture.unirestcurl;
 
-import kong.unirest.HttpMethod;
-import kong.unirest.HttpRequest;
-import kong.unirest.ParamPart;
+import kong.unirest.core.HttpMethod;
+import kong.unirest.core.HttpRequest;
+import kong.unirest.core.ParamPart;
 
 import java.util.ArrayList;
 import java.util.List;
