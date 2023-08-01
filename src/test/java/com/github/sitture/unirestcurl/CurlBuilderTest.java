@@ -1,7 +1,7 @@
 package com.github.sitture.unirestcurl;
 
-import kong.unirest.HttpRequest;
-import kong.unirest.Unirest;
+import kong.unirest.core.HttpRequest;
+import kong.unirest.core.Unirest;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;

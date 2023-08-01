@@ -1,8 +1,8 @@
 package com.github.sitture.unirestcurl;
 
-import kong.unirest.Config;
-import kong.unirest.HttpRequest;
-import kong.unirest.Interceptor;
+import kong.unirest.core.Config;
+import kong.unirest.core.HttpRequest;
+import kong.unirest.core.Interceptor;
 
 public class CurlInterceptor implements Interceptor {
 
