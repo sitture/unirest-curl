@@ -122,7 +122,7 @@
             <dependency>
                 <groupId>com.konghq</groupId>
                 <artifactId>unirest-java-bom</artifactId>
-                <version>4.2.9</version>
+                <version>4.3.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -185,7 +185,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>3.1.0</version>
+                        <version>3.2.0</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -242,7 +242,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>3.1.0</version>
+                        <version>3.2.0</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
