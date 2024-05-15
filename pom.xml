@@ -5,7 +5,7 @@
     <artifactId>unirest-curl</artifactId>
     <name>${project.artifactId}</name>
     <packaging>jar</packaging>
-    <version>0.5.0</version>
+    <version>0.6.0</version>
     <description>An interceptor to log Unirest requests as curl requests.</description>
     <url>https://github.com/sitture/unirest-curl</url>
     <developers>
@@ -89,7 +89,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.21.2</version>
+                <version>3.22.0</version>
                 <configuration>
                     <failOnViolation>true</failOnViolation>
                     <printFailingErrors>true</printFailingErrors>
