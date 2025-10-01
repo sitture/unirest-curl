@@ -5,7 +5,7 @@
     <artifactId>unirest-curl</artifactId>
     <name>${project.artifactId}</name>
     <packaging>jar</packaging>
-    <version>0.6.0</version>
+    <version>1.0.0</version>
     <description>An interceptor to log Unirest requests as curl requests.</description>
     <url>https://github.com/sitture/unirest-curl</url>
     <developers>
@@ -38,7 +38,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <maven.compiler.release>${java.version}</maven.compiler.release>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -63,7 +63,7 @@
                     <dependency>
                         <groupId>com.puppycrawl.tools</groupId>
                         <artifactId>checkstyle</artifactId>
-                        <version>9.3</version>
+                        <version>11.1.0</version>
                     </dependency>
                 </dependencies>
                 <configuration>
@@ -116,7 +116,7 @@
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
-                <version>5.13.4</version>
+                <version>6.0.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

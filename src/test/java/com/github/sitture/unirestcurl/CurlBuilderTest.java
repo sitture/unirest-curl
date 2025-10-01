@@ -19,7 +19,7 @@ class CurlBuilderTest {
     /* default */ void canTransformGetRequestWithNoHeaders() {
         final HttpRequest<?> request = Unirest.get(TEST_URL);
         final String generatedCurl = new CurlBuilder(request).build();
-        final String expectedCurl = String.format("curl --verbose --url \"%s\"", TEST_URL);
+        final String expectedCurl = "curl --verbose --url \"%s\"".formatted(TEST_URL);
         assertEquals(expectedCurl, generatedCurl, UNEXPECTED_ERROR);
     }
 
@@ -29,7 +29,7 @@ class CurlBuilderTest {
                 .header("Content-Type", "application/json")
                 .basicAuth("username", "password");
         final String generatedCurl = new CurlBuilder(request).build();
-        final String expectedCurl = String.format("curl --verbose --url \"%s\" --header \"Content-Type: application/json\" --header \"Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=\"", TEST_URL);
+        final String expectedCurl = "curl --verbose --url \"%s\" --header \"Content-Type: application/json\" --header \"Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=\"".formatted(TEST_URL);
         assertEquals(expectedCurl, generatedCurl, UNEXPECTED_ERROR);
     }
 
@@ -38,7 +38,7 @@ class CurlBuilderTest {
         final HttpRequest<?> request = Unirest.post(TEST_URL)
                 .header("Accept", "application/json");
         final String generatedCurl = new CurlBuilder(request).build();
-        final String expectedCurl = String.format("curl --verbose --request POST --url \"%s\" --header \"Accept: application/json\"", TEST_URL);
+        final String expectedCurl = "curl --verbose --request POST --url \"%s\" --header \"Accept: application/json\"".formatted(TEST_URL);
         assertEquals(expectedCurl, generatedCurl, UNEXPECTED_ERROR);
     }
 
@@ -48,7 +48,7 @@ class CurlBuilderTest {
                 .header("content-type", "application/xml")
                 .body("{\"test\": \"body\"}");
         final String generatedCurl = new CurlBuilder(request).build();
-        final String expectedCurl = String.format("curl --verbose --request POST --url \"%s\" --header \"content-type: application/xml\" --data '{\"test\": \"body\"}'", TEST_URL);
+        final String expectedCurl = "curl --verbose --request POST --url \"%s\" --header \"content-type: application/xml\" --data '{\"test\": \"body\"}'".formatted(TEST_URL);
         assertEquals(expectedCurl, generatedCurl, UNEXPECTED_ERROR);
     }
 
@@ -58,7 +58,7 @@ class CurlBuilderTest {
                 .header("content-type", "application/xml")
                 .fields(null);
         final String generatedCurl = new CurlBuilder(request).build();
-        final String expectedCurl = String.format("curl --verbose --request POST --url \"%s\" --header \"content-type: application/xml\"", TEST_URL);
+        final String expectedCurl = "curl --verbose --request POST --url \"%s\" --header \"content-type: application/xml\"".formatted(TEST_URL);
         assertEquals(expectedCurl, generatedCurl, UNEXPECTED_ERROR);
     }
 
@@ -67,7 +67,7 @@ class CurlBuilderTest {
         final HttpRequest<?> request = Unirest.post(TEST_URL)
                 .fields(Collections.emptyMap());
         final String generatedCurl = new CurlBuilder(request).build();
-        final String expectedCurl = String.format("curl --verbose --request POST --url \"%s\"", TEST_URL);
+        final String expectedCurl = "curl --verbose --request POST --url \"%s\"".formatted(TEST_URL);
         assertEquals(expectedCurl, generatedCurl, UNEXPECTED_ERROR);
     }
 
@@ -81,7 +81,7 @@ class CurlBuilderTest {
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .fields(bodyMap);
         final String generatedCurl = new CurlBuilder(request).build();
-        final String expectedCurl = String.format("curl --verbose --request POST --url \"%s\" --header \"Accept: application/json\" --header \"Content-Type: application/x-www-form-urlencoded\" --data 'key1=value' --data 'key2=2'", TEST_URL);
+        final String expectedCurl = "curl --verbose --request POST --url \"%s\" --header \"Accept: application/json\" --header \"Content-Type: application/x-www-form-urlencoded\" --data 'key1=value' --data 'key2=2'".formatted(TEST_URL);
         assertEquals(expectedCurl, generatedCurl, UNEXPECTED_ERROR);
     }
 
@@ -92,7 +92,7 @@ class CurlBuilderTest {
                 .field("key1", "value")
                 .field("key2", "value2");
         final String generatedCurl = new CurlBuilder(request).build();
-        final String expectedCurl = String.format("curl --verbose --request POST --url \"%s\" --header \"Accept: application/xml\" --data 'key1=value' --data 'key2=value2'", TEST_URL);
+        final String expectedCurl = "curl --verbose --request POST --url \"%s\" --header \"Accept: application/xml\" --data 'key1=value' --data 'key2=value2'".formatted(TEST_URL);
         assertEquals(expectedCurl, generatedCurl, UNEXPECTED_ERROR);
     }
 

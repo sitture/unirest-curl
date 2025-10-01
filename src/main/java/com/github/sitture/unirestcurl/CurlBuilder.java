@@ -48,16 +48,16 @@ class CurlBuilder {
     }
 
     private String getHttpMethod() {
-        return HttpMethod.GET.equals(request.getHttpMethod()) ? EMPTY_STRING : String.format(REQUEST_METHOD, request.getHttpMethod());
+        return HttpMethod.GET.equals(request.getHttpMethod()) ? EMPTY_STRING : REQUEST_METHOD.formatted(request.getHttpMethod());
     }
 
     private String getUrl() {
-        return String.format(REQUEST_URL, request.getUrl());
+        return REQUEST_URL.formatted(request.getUrl());
     }
 
     private String getHeaders() {
         return request.getHeaders().all().stream()
-                .map(header -> String.format(REQUEST_HEADER, header.getName(), header.getValue()))
+                .map(header -> REQUEST_HEADER.formatted(header.getName(), header.getValue()))
                 .collect(Collectors.joining(SPACE_DELIMITER));
     }
 
@@ -65,11 +65,11 @@ class CurlBuilder {
         String processedBody = "";
         if (request.getBody().isPresent()) {
             if (request.getBody().get().multiParts().isEmpty() && null != request.getBody().get().uniPart()) {
-                processedBody = String.format(REQUEST_BODY, request.getBody().get().uniPart().getValue());
+                processedBody = REQUEST_BODY.formatted(request.getBody().get().uniPart().getValue());
             } else {
                 processedBody = request.getBody().get().multiParts().stream()
                         .filter(bodyPart -> bodyPart instanceof ParamPart)
-                        .map(bodyPart -> String.format("--data '%s=%s'", bodyPart.getName(), bodyPart.getValue()))
+                        .map(bodyPart -> "--data '%s=%s'".formatted(bodyPart.getName(), bodyPart.getValue()))
                         .collect(Collectors.joining(SPACE_DELIMITER));
             }
         }
